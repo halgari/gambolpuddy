@@ -9,9 +9,9 @@ namespace Gambolpuddy.Lib.Records
             ObjectBounds = new ObjectBoundsField(cursor);
             FullName = new StringField("FULL - Name", cursor);
             ArmorRating = new ArmorRating(cursor);
-            Keywords = new RefList<Keyword>("KWDA", cursor, c => new Keyword(c));
-            Enchantment = new RefField<MagicEffect>("EITM - Object Effect", cursor, c => new MagicEffect(c));
-            TemplateArmor = new RefField<Armor>("TNAM - Template Armor", cursor, c => new Armor(c));
+            Keywords = new RefList<Keyword>("KWDA", cursor);
+            Enchantment = new RefField<MagicEffect>("EITM - Object Effect", cursor);
+            TemplateArmor = new RefField<Armor>("TNAM - Template Armor", cursor);
         }
         
         public ObjectBoundsField ObjectBounds { get; }

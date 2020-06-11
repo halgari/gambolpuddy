@@ -54,5 +54,14 @@ namespace Gambolpuddy.Test
             Assert.Equal(Delivery.Self, ench.TargetType.Value);
         }
 
+        [Fact]
+        public void CanLoadMagicEffect()
+        {
+            var fms = new MagicEffect(new Cursor((RelativePath)"Update.esm", 0x0007A0FD));
+            Assert.Equal(ActorValue.Restoration, fms.MagicSkill.Value);
+            Assert.Equal(MagicEffectArchType.PeakValueMod, fms.Archtype.Value); 
+            Assert.Equal(1.9999999949504854, fms.BaseCost.Value);
+        }
+
     }
 }

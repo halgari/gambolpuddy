@@ -7,10 +7,9 @@ namespace Gambolpuddy.Lib.Records
     {
         private Func<Cursor, T> _ctor;
 
-        public FormList(Cursor cursor, Func<Cursor, T> ctor) : base(cursor)
+        public FormList(Cursor cursor) : base(cursor)
         {
-            _ctor = ctor;
-            Forms = new RefList<T>("FormIDs", cursor, c => _ctor(c));
+            Forms = new RefList<T>("FormIDs", cursor);
         }
         public RefList<T> Forms { get; }
     }

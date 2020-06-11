@@ -1,8 +1,9 @@
 ﻿namespace Gambolpuddy.Lib.Records.Definitions
 {
-    public enum ActorValue : uint
+    public enum ActorValue : int
     {
-        Aggression,
+        None = -1,
+        Aggression = 0,
         Confidence,
         Energy,
         Morality,

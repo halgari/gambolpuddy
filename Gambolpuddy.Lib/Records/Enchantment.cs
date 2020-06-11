@@ -17,8 +17,8 @@ namespace Gambolpuddy.Lib.Records
             TargetType = new EnumField<Delivery>("ENIT - Effect Data\\Target Type", cursor);
             EnchantType = new EnumField<EnchantmentType>("ENIT - Effect Data\\Enchant Type", cursor);
             ChargeType = new FloatField("ENIT - Effect Data\\Charge Time", cursor);
-            BaseEnchantment = new RefField<Enchantment>("ENIT - Effect Data\\Base Enchantment", cursor, c => new Enchantment(c));
-            WornRestrictions = new RefField<FormList<Keyword>>("ENIT - Effect Data\\Worn Restrictions", cursor, c => new FormList<Keyword>(c, f => new Keyword(f)));
+            BaseEnchantment = new RefField<Enchantment>("ENIT - Effect Data\\Base Enchantment", cursor);
+            WornRestrictions = new RefField<FormList<Keyword>>("ENIT - Effect Data\\Worn Restrictions", cursor);
             MagicEffects = new InlineList<EnchantmentMagicEffect>("Effects", cursor,
                 (path, cursor) => new EnchantmentMagicEffect(path, cursor));
         }
@@ -50,7 +50,7 @@ namespace Gambolpuddy.Lib.Records
         {
             _path = path;
             _cursor = cursor;
-            BaseEffect = new RefField<MagicEffect>(path + "\\EFID", cursor, c => new MagicEffect(c));
+            BaseEffect = new RefField<MagicEffect>(path + "\\EFID", cursor);
             Magnitude = new FloatField(path + "\\Magnitude", cursor);
             AreaOfEffect = new U32IntField(path + "\\Area", cursor);
             Duration = new U32IntField(path + "\\Duration", cursor);

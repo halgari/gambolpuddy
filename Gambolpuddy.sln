@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambolpuddy.Lib", "Gambolpu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gambolpuddy.Test", "Gambolpuddy.Test\Gambolpuddy.Test.csproj", "{71AC69C5-44C7-4514-B2F7-CC504AB87746}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassBasedEnchantments", "ClassBasedEnchantments\ClassBasedEnchantments.csproj", "{34FA9EEF-CA36-45F0-9B1C-6C42C8D90220}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{71AC69C5-44C7-4514-B2F7-CC504AB87746}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71AC69C5-44C7-4514-B2F7-CC504AB87746}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71AC69C5-44C7-4514-B2F7-CC504AB87746}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34FA9EEF-CA36-45F0-9B1C-6C42C8D90220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34FA9EEF-CA36-45F0-9B1C-6C42C8D90220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34FA9EEF-CA36-45F0-9B1C-6C42C8D90220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34FA9EEF-CA36-45F0-9B1C-6C42C8D90220}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

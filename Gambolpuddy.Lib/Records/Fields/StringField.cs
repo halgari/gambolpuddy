@@ -2,7 +2,7 @@
 
 namespace Gambolpuddy.Lib.Records.Fields
 {
-    public struct StringField : IField<string>
+    public class StringField : IField<string>
     {
         private Cursor _cursor;
         private string _path;

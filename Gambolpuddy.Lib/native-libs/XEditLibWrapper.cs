@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Text;
+using Wabbajack.Common;
 
 namespace Gambolpuddy.Lib
 {
@@ -31,6 +32,23 @@ namespace Gambolpuddy.Lib
             {
                 XEditLibWrapper.Release(_handle);
             }
+        }
+
+        public void Save(string filename)
+        {
+            lock (XEditLibWrapper.LockObject)
+            {
+                var order = XEditLib.GetFileLoadOrder(this); 
+                XEditLib.ThrowOnError(XEditLibWrapper.SaveFile(this, filename));
+            }
+        }
+
+        public void AddMaster(string name)
+        {
+            if (!XEditLib.LoadOrderNames.Contains((RelativePath)name))
+                throw new Exception("Cannot add {name} as master, file is not loaded");
+            XEditLibWrapper.AddMaster(this, name);
+
         }
 
         public static implicit operator uint(FileHandle e) => e._handle;
@@ -68,6 +86,9 @@ namespace Gambolpuddy.Lib
         
         [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern bool ElementCount(ElementHandle h, out uint count);
+        
+        [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool CopyElement(ElementHandle h, FileHandle file, bool asNew, out ElementHandle newElement);
 
         #endregion
 
@@ -86,6 +107,12 @@ namespace Gambolpuddy.Lib
         public static extern bool SetUintValue(uint _id, string path, uint value);
         
         [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool GetIntValue(ElementHandle h, string path, out int value);
+
+        [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool SetIntValue(uint _id, string path, int value);
+        
+        [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern bool GetFloatValue(ElementHandle h, string path, out double value);
 
         [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
@@ -98,6 +125,18 @@ namespace Gambolpuddy.Lib
 
         [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern bool GetFileLoadOrder(uint _id, out int pos);
+
+        [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool AddFile(string myfileEsp, in bool ignoreExists, out FileHandle fileHandle);
+        
+        [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool FileByLoadOrder(int order, out FileHandle fileHandle);
+       
+        [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool SaveFile(FileHandle file, string fileName);
+        
+        [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool AddMaster(FileHandle file, string fileName);
 
         #endregion
 
@@ -125,6 +164,10 @@ namespace Gambolpuddy.Lib
 
         [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern bool GetResultString(StringBuilder sb, int len);
+        
+        [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
+        public static extern bool GetGlobal(string name, out uint len);
+
 
         
         [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
@@ -156,7 +199,7 @@ namespace Gambolpuddy.Lib
         public static extern bool GetInjectionTarget(uint _id, out uint cardinal);
 
         #endregion
-        
+
         #region Serialization
         [DllImport(@"native-libs\XEditLib.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall)]
         public static extern void ElementToJson(uint id, out int len);        

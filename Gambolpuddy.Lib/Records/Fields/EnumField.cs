@@ -16,8 +16,8 @@ namespace Gambolpuddy.Lib.Records.Fields
 
         public T Value
         {
-            get => (T)(object)(XEditLib.GetElementUIntValue(_cursor.ElementPath, _path));
-            set => XEditLib.SetElementUIntValue(_cursor.ElementPath, _path, (uint)(object)value);
+            get => (T)(object)(XEditLib.GetElementIntValue(_cursor.ElementPath, _path));
+            set => XEditLib.SetElementIntValue(_cursor.ElementPath, _path, (int)(object)value);
         }
     }
 }

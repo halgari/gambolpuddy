@@ -13,7 +13,7 @@ namespace Gambolpuddy.Lib.Records.Fields
             _cursor = cursor;
             
             Type = new EnumField<ConditionType>(path + "\\Type", cursor);
-            ComparisonValueFormId = new RefList<RecordBase>(path + "\\Comparison Value - Global", cursor, c => null);
+            ComparisonValueFormId = new RefList<RecordBase>(path + "\\Comparison Value - Global", cursor);
             ComparisonValueFloat = new FloatField(path + "\\Comparison Value - Float", cursor);
             Function = new StringField(path + "\\Function", cursor);
             RunOn = new EnumField<RunOnType>();
